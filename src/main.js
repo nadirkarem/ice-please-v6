@@ -3,6 +3,12 @@ import './style.css';
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.querySelector('.ip');
+/* On the static site the page scrolls in the window; in Odoo it scrolls inside #wrapwrap. One handle for both. */
+const scrollEl = (() => { const w = document.getElementById('wrapwrap'); return w && /(auto|scroll)/.test(getComputedStyle(w).overflowY) ? w : null; })();
+const scroller = scrollEl || window;
+const scrollTop = () => (scrollEl ? scrollEl.scrollTop : window.scrollY);
+const onScrollOf = (fn) => scroller.addEventListener('scroll', fn, { passive: true });
+const offScrollOf = (fn) => scroller.removeEventListener('scroll', fn);
 /* things a page sets up on window or document are listed here and undone before the next page arrives */
 let cleanups = [];
 const track = (fn) => cleanups.push(fn);
@@ -31,14 +37,14 @@ function initPage() {
 function initHeader() {
   const header = document.querySelector('[data-ip-header]');
   if (!header) return;
-  let last = window.scrollY;
+  let last = scrollTop();
   const onScroll = () => {
-    const y = window.scrollY;
+    const y = scrollTop();
     header.classList.toggle('is-top', y <= 8);
     if (Math.abs(y - last) > 6) { header.classList.toggle('is-away', y > 140 && y > last); last = y; }
   };
   onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  onScrollOf(onScroll);
 }
 
 /* Mobile menu: a sheet under the bar. While it is open the page behind is inert and cannot scroll. */
@@ -56,7 +62,7 @@ function initMenu() {
     burger.setAttribute('aria-label', open ? burger.dataset.labelClose : burger.dataset.labelOpen);
     sheet.toggleAttribute('inert', !open);
     behind().forEach((el) => el.toggleAttribute('inert', open));
-    document.documentElement.style.overflow = open ? 'hidden' : '';
+    (scrollEl || document.documentElement).style.overflow = open ? 'hidden' : '';
     window.__ipLenis?.[open ? 'stop' : 'start']();
   };
   window.__ipCloseMenu = () => setOpen(false);
@@ -100,19 +106,19 @@ function initReveal() {
    It publishes the scroll progress (0 at the top, 1 after 80% of a screen) as --p. */
 function initHeroMelt() {
   const heroes = document.querySelectorAll('.ip-hero, .ip-pagehero');
-  if (!heroes.length || CSS.supports('animation-timeline: scroll()')) return;
+  if (!heroes.length || (CSS.supports('animation-timeline: scroll()') && !scrollEl)) return;
   if (reduced()) return;
   heroes.forEach((hero) => hero.classList.add('is-scrubbed'));
   let frame = 0;
   const update = () => {
     frame = 0;
-    const p = Math.min(window.scrollY / (window.innerHeight * 0.8), 1);
+    const p = Math.min(scrollTop() / (window.innerHeight * 0.8), 1);
     heroes.forEach((hero) => hero.style.setProperty('--p', p.toFixed(3)));
   };
   update();
   const onScroll = () => { frame = frame || requestAnimationFrame(update); };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  track(() => window.removeEventListener('scroll', onScroll));
+  onScrollOf(onScroll);
+  track(() => offScrollOf(onScroll));
 }
 
 /* Frost on the home photograph (computer with a mouse only; phones keep the plain photograph).
@@ -223,7 +229,7 @@ function initFrost() {
     if (inside && mx >= 0) brush(mx, my, x, y, Math.min(rect.width, 1000) * 0.075, 0.5);
     mx = inside ? x : -1; my = y;
   };
-  const onScroll = () => { clear = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.55))); clear = clear * clear * (3 - 2 * clear); };
+  const onScroll = () => { clear = Math.min(1, Math.max(0, scrollTop() / (window.innerHeight * 0.55))); clear = clear * clear * (3 - 2 * clear); };
   const tick = (now) => {
     frame = requestAnimationFrame(tick);
     if (!ready || !visible) return;
@@ -245,7 +251,7 @@ function initFrost() {
   resize(); onScroll();
   window.addEventListener('resize', resize);
   window.addEventListener('pointermove', onMove, { passive: true });
-  window.addEventListener('scroll', onScroll, { passive: true });
+  onScrollOf(onScroll);
   hero.classList.add('has-frost');
   media.append(canvas);
   frame = requestAnimationFrame(tick);
@@ -291,7 +297,7 @@ function initFrost() {
     io.disconnect();
     window.removeEventListener('resize', resize);
     window.removeEventListener('pointermove', onMove);
-    window.removeEventListener('scroll', onScroll);
+    offScrollOf(onScroll);
     gl.getExtension('WEBGL_lose_context')?.loseContext();
     canvas.remove();
   });
@@ -385,20 +391,22 @@ function initSaga() {
   }, { rootMargin: '30% 0px 30% 0px' });
   io.observe(saga);
   const onResize = () => { P = plan(); saga.style.setProperty('--saga-k', String(P.k)); current = null; kick(); };
-  window.addEventListener('scroll', kick, { passive: true });
+  onScrollOf(kick);
   window.addEventListener('resize', onResize);
   toggles.forEach((b) => b.addEventListener('click', () => { userPaused = !userPaused; label(); current = null; kick(); }));
   label();
   apply(progress());
-  track(() => { io.disconnect(); window.removeEventListener('scroll', kick); window.removeEventListener('resize', onResize); cancelAnimationFrame(frame); films.forEach((f) => f.pause()); openVideo.pause(); });
+  track(() => { io.disconnect(); offScrollOf(kick); window.removeEventListener('resize', onResize); cancelAnimationFrame(frame); films.forEach((f) => f.pause()); openVideo.pause(); });
 }
 
 /* Smooth wheel scrolling (Lenis) on desktop pointers only: touch keeps the browser's own momentum, and
-   reduced motion keeps plain scrolling. Static site only: Odoo keeps its own scrolling. */
+   reduced motion keeps plain scrolling. Off unless the .ip root asks for it (data-ip-router or data-ip-smooth). */
 function initSmoothScroll() {
-  if (!root || !root.hasAttribute('data-ip-router') || reduced()) return;
+  if (!root || !(root.hasAttribute('data-ip-router') || root.hasAttribute('data-ip-smooth')) || reduced()) return;
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  window.__ipLenis = new Lenis({ autoRaf: true, lerp: 0.085, wheelMultiplier: 0.95, anchors: { offset: -96 } });
+  const options = { autoRaf: true, lerp: 0.085, wheelMultiplier: 0.95, anchors: { offset: -96 } };
+  if (scrollEl) { options.wrapper = scrollEl; options.content = scrollEl; options.eventsTarget = scrollEl; }
+  window.__ipLenis = new Lenis(options);
 }
 
 /* Scroll-revealed films (.ip-reveal): the section is a tall track with a pinned stage. The scroll position
@@ -431,10 +439,10 @@ function initScenes() {
     const kick = () => { if (near && !frame) frame = requestAnimationFrame(tick); };
     const io = new IntersectionObserver(([e]) => { near = e.isIntersecting; if (near) { current = -1; kick(); } }, { rootMargin: '25% 0px 25% 0px' });
     io.observe(section);
-    window.addEventListener('scroll', kick, { passive: true });
+    onScrollOf(kick);
     window.addEventListener('resize', kick);
     apply(progress());
-    track(() => { io.disconnect(); window.removeEventListener('scroll', kick); window.removeEventListener('resize', kick); cancelAnimationFrame(frame); });
+    track(() => { io.disconnect(); offScrollOf(kick); window.removeEventListener('resize', kick); cancelAnimationFrame(frame); });
   });
 }
 
