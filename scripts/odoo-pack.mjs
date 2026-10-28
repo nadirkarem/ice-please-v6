@@ -3,6 +3,8 @@
 //   IP_ASSET_BASE=/ice-v6        where img/, fonts/, media/, ip.css and ip.js will be served (a path on the Odoo site, or a full URL)
 //   IP_PREFIX=/v6                prefix for the pages (so they can sit next to the existing Odoo pages)
 //   IP_CHROME=1                  keep the design's own header, footer and WhatsApp button inside each page (Odoo's are hidden)
+//   IP_DIST=dist-pack            the build to read (default dist; for a host that serves the pack, a build made WITHOUT BASE_PATH)
+//   IP_NO_MEDIA=1                do not copy img/, fonts/, media/ into the pack (when they are served by the host)
 // Writes pages.json for tools/odoo/install.js (pages + layout patch) and shop.json for tools/odoo/shop-setup.js (catalogue, texts, images).
 //
 // The shop is Odoo's own (website_sale): the pack holds no cart, checkout or account page. What it does hold:
@@ -18,7 +20,7 @@ import { ACCOUNT_IDS, LANGS, PRODUCT_IDS, SHOP_IDS } from './lib/routes.mjs';
 import { CARD_IMAGE, PAGE_IMAGE, allProducts } from './lib/catalog.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-const dist = resolve(root, 'dist');
+const dist = resolve(root, process.env.IP_DIST ?? 'dist');
 const out = resolve(root, 'odoo-pack');
 const base = (process.env.IP_ASSET_BASE ?? '').replace(/\/$/, '');
 const prefix = (process.env.IP_PREFIX ?? '').replace(/\/$/, '');
@@ -110,7 +112,7 @@ writeFileSync(resolve(out, 'ip.css'), rebase(readFileSync(resolve(dist, 'assets'
 cpSync(resolve(dist, 'assets', js), resolve(out, 'ip.js'));
 
 // 4. media to upload to Odoo (or to host elsewhere)
-for (const dir of ['img', 'brand', 'fonts', 'media']) cpSync(resolve(dist, dir), resolve(out, 'media', dir), { recursive: true });
+if (process.env.IP_NO_MEDIA !== '1') for (const dir of ['img', 'brand', 'fonts', 'media']) cpSync(resolve(dist, dir), resolve(out, 'media', dir), { recursive: true });
 
 // 5. the shop, for tools/odoo/shop-setup.js: what to publish, in which language, with which image. Prices stay out: they are Odoo's.
 const frCtx = { ...makeCtx('fr', content) };

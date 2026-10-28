@@ -5,7 +5,7 @@
    only touches the content of Odoo's pages: `main > #wrap:not(.ip-own)`. The pages of the pack carry `.ip-own` and keep
    their own markup. Nothing here applies to the static site, which has no `.ip-odoo`.
 
-   Class names are those of Odoo 19's website_sale, payment and portal templates, read on nadirtest (views website_sale.products,
+   Class names are those of Odoo 19's website_sale, payment and portal templates, read on the company's Odoo test database (views website_sale.products,
    .products_item, .product, .cart_lines, .checkout_layout, .payment, .confirmation, payment.form…). The rules were checked
    against fixtures built from those templates and Odoo's real stylesheet (tools/qa/odoo-fixtures.mjs), not yet on live pages.
    =========================================================================== */

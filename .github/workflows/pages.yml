@@ -26,6 +26,17 @@ jobs:
       - run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}
+      # The package for Odoo (pages, shop catalogue, stylesheet and script) served next to the site, so that a script running in the
+      # Odoo tab can read it: Odoo pages are HTTPS and a browser refuses to let them read files from a local server.
+      - name: Package for Odoo
+        env:
+          SITE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: |
+          npx vite build --outDir dist-pack --emptyOutDir
+          IP_DIST=dist-pack IP_NO_MEDIA=1 IP_ASSET_BASE="$SITE" IP_PREFIX=/v6 IP_CHROME=1 node scripts/odoo-pack.mjs
+          mkdir -p dist/odoo-pack
+          cp odoo-pack/pages.json odoo-pack/shop.json dist/odoo-pack/
+          cp odoo-pack/ip.css odoo-pack/ip.js dist/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
