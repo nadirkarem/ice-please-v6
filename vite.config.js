@@ -9,6 +9,7 @@ const root = import.meta.dirname;
 const BASE = (process.env.BASE_PATH ?? '').replace(/\/+$/, '');
 const rebase = (html) => {
   if (!BASE) return html;
+  html = html.replace('<meta name="ip-base" content="/">', `<meta name="ip-base" content="${BASE}/">`); // read by src/shop.js to build addresses
   return html.replace(/(\s(?:href|src|srcset|poster)=")([^"]*)"/g, (match, attr, value) => {
     if (value.startsWith('/src/')) return match; // the module entry: Vite handles it
     const fixed = attr.includes('srcset')

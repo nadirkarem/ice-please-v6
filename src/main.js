@@ -1,5 +1,6 @@
 import Lenis from 'lenis';
 import './style.css';
+import { initShop } from './shop.js';
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.querySelector('.ip');
@@ -15,6 +16,7 @@ const track = (fn) => cleanups.push(fn);
 
 initSmoothScroll();
 initHeader();
+initOdooChrome();
 initMenu();
 initPage();
 initRouter();
@@ -30,6 +32,7 @@ function initPage() {
   initFloatingButton();
   initTabs();
   initForms();
+  initShop({ track });
 }
 
 /* Header: invisible by default (CSS adds the glass under the pointer), white on the home photo at the top,
@@ -45,6 +48,29 @@ function initHeader() {
   };
   onScroll();
   onScrollOf(onScroll);
+}
+
+/* Odoo's own pages (shop, cart, account…) get this header and footer from the layout patch, which cannot know which page it is on:
+   the current link and the language links are set here. The pack's pages live under a prefix (data-ip-prefix, e.g. /v6) that the
+   link comparison ignores; Odoo's own pages (/shop, /my…) and their language versions (/en/shop) have none. */
+function initOdooChrome() {
+  if (!root || !root.classList.contains('ip-odoo')) return;
+  const header = document.querySelector('[data-ip-header]');
+  if (!header) return;
+  const prefix = header.dataset.ipPrefix || '';
+  const bare = (path) => (path.replace(/\/+$/, '') || '/');
+  const strip = (path) => bare(bare(path).replace(prefix, '').replace(/^\/(en|ar)(?=\/|$)/, '') || '/');
+  const here = strip(location.pathname);
+  document.querySelectorAll('.ip-nav a, .ip-sheet__nav a').forEach((a) => {
+    const target = strip(new URL(a.href, location.href).pathname);
+    const on = target === here || (target !== '/' && here.startsWith(`${target}/`));
+    if (on) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+  document.querySelectorAll('.ip-lang a[lang]').forEach((a) => {
+    const lang = a.getAttribute('lang');
+    a.href = `${lang === 'fr' ? '' : `/${lang}`}${here === '/' ? '' : here}${location.search}` || '/';
+  });
 }
 
 /* Mobile menu: a sheet under the bar. While it is open the page behind is inert and cannot scroll. */
@@ -569,7 +595,7 @@ function initRouter() {
     if (url.origin !== location.origin || /\.[a-z0-9]{2,5}$/i.test(url.pathname)) return;
     if (url.pathname === location.pathname && url.search === location.search) return; // same page: the browser handles the hash
     event.preventDefault();
-    go(url, { push: true, animate: !reduced() });
+    go(url, { push: true, animate: !reduced() && !a.hasAttribute('data-ip-instant') });
   });
   window.addEventListener('popstate', () => go(new URL(location.href), { push: false, animate: false }));
 }

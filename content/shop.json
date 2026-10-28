@@ -1,0 +1,277 @@
+{
+  "_doc": "Catalogue de la boutique (V6). Rien ici n'est inventé : les prix sont vides (affichés « -- MAD ») tant que l'entreprise ne les a pas confirmés. Les tailles de Cube XL et d'Ice Stick et les sacs de glace gourmet viennent des variantes déjà présentes dans Odoo (à valider avant publication). `odoo.template` est l'identifiant du produit dans la base de test nadirtest : le script d'installation retrouve le produit par son nom, pas par cet identifiant.",
+  "demo": true,
+  "currency": "MAD",
+  "vatRate": null,
+  "categories": [
+    {
+      "id": "clear",
+      "products": [
+        "cube-xl",
+        "ice-stick",
+        "moon-ball",
+        "custom-ice"
+      ]
+    },
+    {
+      "id": "service",
+      "products": [
+        "gourmet-ice",
+        "crushed-ice",
+        "ice-slab"
+      ]
+    },
+    {
+      "id": "extras",
+      "products": [
+        "dry-ice",
+        "ice-stamp"
+      ]
+    }
+  ],
+  "products": {
+    "cube-xl": {
+      "mode": "cart",
+      "unit": "pack20",
+      "min": 1,
+      "price": null,
+      "option": {
+        "key": "size",
+        "dims": [
+          [
+            4.5,
+            4.5,
+            5.5
+          ],
+          [
+            4.5,
+            4.5,
+            6
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            4.8,
+            4.8,
+            6
+          ],
+          [
+            4.8,
+            4.8,
+            6.5
+          ],
+          [
+            5,
+            5,
+            6
+          ],
+          [
+            4.8,
+            4.8,
+            7
+          ],
+          [
+            5,
+            5,
+            6.5
+          ],
+          [
+            5,
+            5,
+            7
+          ],
+          [
+            5,
+            5,
+            7.5
+          ],
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            15,
+            15,
+            15
+          ]
+        ]
+      },
+      "odoo": {
+        "template": 16,
+        "match": "Cube XL"
+      }
+    },
+    "ice-stick": {
+      "mode": "cart",
+      "unit": "pack20",
+      "min": 1,
+      "price": null,
+      "option": {
+        "key": "size",
+        "dims": [
+          [
+            3,
+            3,
+            12.5
+          ],
+          [
+            3.5,
+            3.5,
+            12.5
+          ],
+          [
+            3.8,
+            3.8,
+            12.5
+          ],
+          [
+            5,
+            5,
+            12.5
+          ],
+          [
+            3,
+            3,
+            15
+          ],
+          [
+            3.5,
+            3.5,
+            15
+          ],
+          [
+            3.8,
+            3.8,
+            17
+          ]
+        ]
+      },
+      "odoo": {
+        "template": 18,
+        "match": "Ice Stick"
+      }
+    },
+    "moon-ball": {
+      "mode": "cart",
+      "unit": "pack20",
+      "min": 1,
+      "price": null,
+      "odoo": {
+        "template": 523,
+        "match": "Moon Ball",
+        "note": "Le produit existe dans Odoo (un doublon archivé aussi)."
+      }
+    },
+    "custom-ice": {
+      "mode": "quote",
+      "odoo": {
+        "template": 668,
+        "match": "Cube XL (Inclusion)",
+        "note": "Odoo a « Cube XL (Inclusion) » et « Ice Stick (inclusion) », avec prix et variantes : vente en ligne ou sur devis ?"
+      }
+    },
+    "gourmet-ice": {
+      "mode": "cart",
+      "unit": "bag",
+      "min": 1,
+      "price": null,
+      "option": {
+        "key": "bag",
+        "kg": [
+          1,
+          2,
+          10,
+          15
+        ],
+        "default": 2
+      },
+      "odoo": {
+        "template": 14,
+        "match": "Gourmet Premium Ice",
+        "note": "Odoo a aussi l'ancien « Glaçons alimentaire 2KG »."
+      }
+    },
+    "ice-slab": {
+      "mode": "quote",
+      "odoo": {
+        "template": 28,
+        "match": "Ice Block",
+        "note": "« Ice Block » (5 formats) : le texte du site dit « contactez-nous ». Vente en ligne ou devis ?"
+      }
+    },
+    "crushed-ice": {
+      "mode": "cart",
+      "unit": "pack12_5",
+      "min": 1,
+      "price": null,
+      "odoo": {
+        "template": 19,
+        "match": "Glace Pilée",
+        "note": "Odoo a aussi « Glace Pilée Cocktail » et « Glaçons normaux 5 KGS » : lequel publier ?"
+      }
+    },
+    "dry-ice": {
+      "mode": "cart",
+      "unit": "kg",
+      "min": 3,
+      "price": null,
+      "odoo": {
+        "template": 30,
+        "match": "Glace Carbonique"
+      }
+    },
+    "ice-stamp": {
+      "mode": "cart",
+      "unit": "piece",
+      "min": 1,
+      "price": null,
+      "option": {
+        "key": "format",
+        "ids": [
+          "stamp",
+          "tray"
+        ]
+      },
+      "odoo": {
+        "template": 26,
+        "match": "Tampon à Glace",
+        "note": "Odoo a deux produits : « Tampon à Glace » (Mâle / Femelle) et « Plateau à Tampons » (variantes). Le site les présente comme deux formats d'un même produit."
+      }
+    }
+  },
+  "delivery": [
+    {
+      "id": "pro",
+      "fee": null,
+      "default": true
+    },
+    {
+      "id": "pickup",
+      "fee": null
+    }
+  ],
+  "payment": [
+    {
+      "id": "card",
+      "provider": "stripe",
+      "flow": "simulated"
+    },
+    {
+      "id": "cod",
+      "flow": "pending"
+    },
+    {
+      "id": "transfer",
+      "flow": "pending"
+    }
+  ]
+}

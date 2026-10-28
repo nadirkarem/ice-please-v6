@@ -3,30 +3,8 @@
 import { esc, md, waLink, picture, pictureResponsive } from './html.mjs';
 import { icon } from './icons.mjs';
 import { PRODUCT_IDS, FEATURED_IDS, MORE_IDS, urlFor } from './routes.mjs';
-
-/** Which image shows a product on a card, and which one on its own page. */
-const CARD_IMAGE = {
-  'cube-xl': 'cube-xl-card',
-  'ice-stick': 'ice-stick-card',
-  'moon-ball': 'moon-ball',
-  'custom-ice': 'custom-ice',
-  'gourmet-ice': 'gourmet-ice',
-  'ice-slab': 'ice-slab',
-  'crushed-ice': 'crushed-ice',
-  'dry-ice': 'dry-ice-glass',
-  'ice-stamp': 'ice-stamp',
-};
-const PAGE_IMAGE = {
-  'cube-xl': 'cube-xl-photo',
-  'ice-stick': 'ice-stick-photo',
-  'moon-ball': 'moon-ball',
-  'custom-ice': 'custom-ice',
-  'gourmet-ice': 'gourmet-ice',
-  'ice-slab': 'ice-slab',
-  'crushed-ice': 'crushed-ice',
-  'dry-ice': 'dry-ice-pile',
-  'ice-stamp': 'ice-stamp',
-};
+import { CARD_IMAGE, PAGE_IMAGE } from './catalog.mjs';
+import * as shopPages from './shop-pages.mjs';
 
 const alt = (ctx, id) => ctx.c.alt[id] ?? '';
 /** Soft edge at the bottom of a photograph: colour ramp plus a progressive blur (see .ip-dissolve). */
@@ -294,7 +272,7 @@ export function home(ctx) {
         <h1 class="ip-hero__title">${md(ctx, h.heroTitle)}</h1>
         <p class="ip-hero__sub">${md(ctx, h.heroSub)}</p>
         <div class="ip-hero__cta">
-          <a class="ip-btn ip-btn--primary ip-btn--lg" href="${waLink(ctx, c.wa.generic)}" ${external}>${icon('whatsapp')}<span>${esc(c.ui.orderWhatsapp)}</span></a>
+          <a class="ip-btn ip-btn--primary ip-btn--lg" href="${urlFor('shop', lang)}">${icon('bag')}<span>${esc(c.ui.shopOrder)}</span></a>
           <a class="ip-btn ip-btn--glass ip-btn--lg" href="#nos-glacons"><span>${esc(c.ui.seeIce)}</span></a>
         </div>
       </div>
@@ -342,7 +320,7 @@ export function glacons(ctx) {
     <section class="ip-section ip-section--tight">
       <div class="ip-wrap"><ul class="ip-tiles">${PRODUCT_IDS.map((id) => tile(ctx, id)).join('')}</ul></div>
     </section>
-    ${ctaBand(ctx)}`;
+    ${shopPages.pointerBand(ctx)}`;
 }
 
 export function product(ctx, page) {
@@ -350,7 +328,6 @@ export function product(ctx, page) {
   const id = page.id;
   const p = c.products[id];
   const img = PAGE_IMAGE[id];
-  const order = ctx.c.wa.product.replace('{product}', p.h1);
   const at = PRODUCT_IDS.indexOf(id);
   const related = [1, 2, 3, 4].map((n) => PRODUCT_IDS[(at + n) % PRODUCT_IDS.length]);
   const specs = p.specs.length
@@ -368,11 +345,9 @@ export function product(ctx, page) {
           </nav>
           <h1 class="ip-product__title">${md(ctx, p.h1)}</h1>
           <p class="ip-lead">${md(ctx, p.paras[0])}</p>
+          ${shopPages.pointer(ctx, id)}
           ${p.paras.slice(1).map((t) => `<p>${md(ctx, t)}</p>`).join('')}
           ${specs}
-          <div class="ip-product__cta">
-            <a class="ip-btn ip-btn--primary ip-btn--lg" href="${waLink(ctx, order)}" ${external}>${icon('whatsapp')}<span>${esc(c.ui.orderWhatsapp)}</span></a>
-          </div>
         </div>
       </div>
     </article>
@@ -380,10 +355,7 @@ export function product(ctx, page) {
       <div class="ip-wrap"><div class="ip-sectionhead"><h2 id="h-related">${esc(c.ui.related)}</h2></div></div>
       <ul class="ip-rail ip-rail--related">${related.map((r) => card(ctx, r, { sizes: '(min-width: 1000px) 24vw, 70vw' })).join('')}</ul>
     </section>
-    <div class="ip-buybar">
-      <span class="ip-buybar__name">${md(ctx, p.h1)}</span>
-      <a class="ip-btn ip-btn--primary" href="${waLink(ctx, order)}" ${external}>${icon('whatsapp')}<span>${esc(c.ui.order)}</span></a>
-    </div>`;
+    ${shopPages.pointerBar(ctx, id)}`;
 }
 
 export function savoir(ctx) {
@@ -459,6 +431,9 @@ export function notFound(ctx) {
 
 export const RENDERERS = {
   home, glacons, savoir, about, contact,
-  privacy: legal, terms: legal, notFound,
+  privacy: legal, terms: legal, cgv: legal, notFound,
+  shop: shopPages.shop, ...Object.fromEntries(PRODUCT_IDS.map((id) => [`shop-${id}`, shopPages.shopProduct])), cart: shopPages.cart, checkout: shopPages.checkout, payment: shopPages.payment,
+  simulate: shopPages.simulate, confirmation: shopPages.confirmation,
+  login: shopPages.login, signup: shopPages.signup, account: shopPages.account,
   ...Object.fromEntries(PRODUCT_IDS.map((id) => [id, product])),
 };

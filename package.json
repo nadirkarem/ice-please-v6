@@ -1,9 +1,9 @@
 {
-  "name": "ice-please-site",
+  "name": "ice-please-site-v6",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Ice Please (Maroc) — site vitrine FR/EN/AR, statique, portable vers Odoo",
+  "description": "Ice Please (Maroc) — site et boutique FR/EN/AR, statique, portable vers Odoo",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5300",
     "build": "vite build",

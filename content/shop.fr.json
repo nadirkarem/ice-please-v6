@@ -1,0 +1,303 @@
+{
+  "nav": {
+    "shop": "Boutique"
+  },
+  "ui": {
+    "cart": "Panier",
+    "cartAria": "Panier ({n})",
+    "shopOrder": "Commander en ligne",
+    "account": "Mon compte",
+    "footerAccount": "Mon compte",
+    "mailto": "Écrire",
+    "waHelp": "Besoin d’aide ? Écrivez-nous sur WhatsApp"
+  },
+  "footer": {
+    "cgv": "Conditions générales de vente"
+  },
+  "meta": {
+    "shop": {
+      "title": "Boutique en ligne : clear ice, glace pilée, glace carbonique | Ice Please Maroc",
+      "description": "Commandez en ligne vos glaçons cristallins Ice Please : Cube XL, Ice Stick, Moon Ball, glaçons gourmet, glace pilée, glace carbonique et accessoires. Livraison professionnelle 7j/7 au Maroc."
+    },
+    "cart": {
+      "title": "Panier | Ice Please Maroc",
+      "description": ""
+    },
+    "checkout": {
+      "title": "Commande : livraison | Ice Please Maroc",
+      "description": ""
+    },
+    "payment": {
+      "title": "Paiement | Ice Please Maroc",
+      "description": ""
+    },
+    "simulate": {
+      "title": "Simulation du paiement | Ice Please Maroc",
+      "description": ""
+    },
+    "confirmation": {
+      "title": "Confirmation de commande | Ice Please Maroc",
+      "description": ""
+    },
+    "login": {
+      "title": "Connexion | Ice Please Maroc",
+      "description": ""
+    },
+    "signup": {
+      "title": "Créer un compte | Ice Please Maroc",
+      "description": ""
+    },
+    "account": {
+      "title": "Mon compte | Ice Please Maroc",
+      "description": ""
+    },
+    "cgv": {
+      "title": "Conditions générales de vente | Ice Please",
+      "description": ""
+    }
+  },
+  "shop": {
+    "demo": "Maquette de démonstration : aucune commande réelle n’est passée, aucun paiement n’est effectué et aucune donnée n’est envoyée.",
+    "priceHint": "Prix à confirmer",
+    "list": {
+      "title": "Boutique",
+      "lead": "Commandez vos glaçons cristallins en ligne. Livraison professionnelle 7j/7 au Maroc.",
+      "filters": "Catégories",
+      "all": "Tout",
+      "categories": {
+        "clear": "Clear ice",
+        "service": "Pour le service",
+        "extras": "Effets et accessoires"
+      },
+      "search": "Rechercher un produit",
+      "searchPlaceholder": "Rechercher",
+      "shown": "Produits affichés : {n}",
+      "empty": "Aucun produit ne correspond à votre recherche.",
+      "reset": "Tout afficher",
+      "quoteTitle": "Un gros volume, un événement, une glace sur mesure ?"
+    },
+    "unit": {
+      "pack20": "pack de 20",
+      "bag": "sac",
+      "pack12_5": "pack de 12,5 kg",
+      "kg": "kg",
+      "piece": "pièce"
+    },
+    "option": {
+      "size": "Taille",
+      "bag": "Sac",
+      "format": "Format"
+    },
+    "bagLabel": "Sac de {n} kg",
+    "formats": {
+      "stamp": "Tampon individuel",
+      "tray": "Plateau à empreintes"
+    },
+    "buy": {
+      "add": "Ajouter au panier",
+      "chooseOptions": "Choisir les options",
+      "requestQuote": "Demander un devis",
+      "quoteOnly": "Sur devis",
+      "quoteNote": "Cette glace se prépare sur mesure : décrivez votre besoin et nous vous répondons avec un devis.",
+      "qty": "Quantité",
+      "qtyMinus": "Diminuer la quantité",
+      "qtyPlus": "Augmenter la quantité",
+      "minNote": "Minimum de commande : {n} {unit}.",
+      "minError": "La quantité minimale est de {n} {unit}.",
+      "qtyError": "Saisissez une quantité entière d’au moins 1.",
+      "optionError": "Choisissez une option avant d’ajouter au panier.",
+      "choose": "Choisir…",
+      "added": "{name} a été ajouté au panier.",
+      "viewCart": "Voir le panier",
+      "orderWa": "Commander sur WhatsApp",
+      "alt": "Autres façons de commander",
+      "bar": "Ajouter"
+    },
+    "cart": {
+      "title": "Panier",
+      "lead": "Vérifiez vos produits avant de passer la commande.",
+      "steps": "Étapes de la commande",
+      "stepNames": [
+        "Panier",
+        "Livraison",
+        "Paiement",
+        "Confirmation"
+      ],
+      "stepOf": "Étape {n} sur {total}",
+      "summary": "Récapitulatif",
+      "empty": "Votre panier est vide.",
+      "emptyLead": "Parcourez la boutique pour ajouter des glaçons à votre commande.",
+      "continue": "Continuer mes achats",
+      "checkout": "Passer la commande",
+      "remove": "Retirer",
+      "removeAria": "Retirer {name} du panier",
+      "removed": "{name} a été retiré du panier.",
+      "undo": "Annuler",
+      "unitPrice": "Prix unitaire",
+      "lineTotal": "Total",
+      "subtotal": "Sous-total",
+      "delivery": "Livraison",
+      "deliveryLater": "Calculée à l’étape suivante",
+      "total": "Total",
+      "items": "Articles : {n}",
+      "quote": "Demander un devis pour ce panier",
+      "quoteIntro": "Bonjour Ice Please, je souhaite recevoir un devis pour :",
+      "tax": "Taxes et frais de livraison précisés à l’étape suivante.",
+      "updated": "Panier mis à jour."
+    },
+    "checkout": {
+      "title": "Livraison",
+      "lead": "Indiquez qui reçoit la commande et où la livrer.",
+      "contact": "Vos coordonnées",
+      "address": "Adresse de livraison",
+      "method": "Mode de livraison",
+      "accountHint": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter",
+      "fields": {
+        "name": "Nom et prénom",
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "company": "Société (facultatif)",
+        "ice": "ICE (facultatif, pour la facture)",
+        "street": "Adresse",
+        "city": "Ville",
+        "zip": "Code postal (facultatif)",
+        "date": "Date de livraison souhaitée (facultatif)",
+        "note": "Informations pour le livreur (facultatif)"
+      },
+      "methods": {
+        "pro": {
+          "name": "Livraison professionnelle",
+          "desc": "Livraison 7j/7 au Maroc."
+        },
+        "pickup": {
+          "name": "Retrait sur place",
+          "desc": "Les modalités de retrait vous sont communiquées après la commande."
+        }
+      },
+      "fee": "Frais : {price}",
+      "continue": "Continuer vers le paiement",
+      "back": "Retour au panier",
+      "errors": "Corrigez les champs signalés pour continuer."
+    },
+    "payment": {
+      "title": "Paiement",
+      "lead": "Vérifiez votre commande, puis choisissez comment la régler.",
+      "review": "Votre commande",
+      "edit": "Modifier",
+      "contact": "Coordonnées",
+      "address": "Livraison",
+      "method": "Mode de paiement",
+      "methods": {
+        "card": {
+          "name": "Carte bancaire",
+          "desc": "Vous êtes redirigé vers la page de paiement sécurisée de notre prestataire."
+        },
+        "cod": {
+          "name": "Paiement à la livraison",
+          "desc": "Vous réglez à la réception de votre commande."
+        },
+        "transfer": {
+          "name": "Virement bancaire",
+          "desc": "Les coordonnées bancaires vous sont communiquées après la commande."
+        }
+      },
+      "terms": "J’accepte les {link}.",
+      "termsLink": "conditions générales de vente",
+      "termsError": "Vous devez accepter les conditions générales de vente.",
+      "methodError": "Choisissez un mode de paiement.",
+      "pay": "Payer ma commande",
+      "confirm": "Confirmer la commande",
+      "back": "Retour à la livraison"
+    },
+    "simulate": {
+      "badge": "Simulation",
+      "title": "Page du prestataire de paiement",
+      "lead": "Cette page remplace celle de Stripe, ou du prestataire retenu, qui sera branchée plus tard. Choisissez le résultat à simuler.",
+      "order": "Commande {ref}",
+      "amount": "Montant : {amount}",
+      "question": "Le paiement doit-il passer ?",
+      "yes": "Oui, paiement accepté",
+      "no": "Non, paiement refusé",
+      "processing": "Vérification du paiement…",
+      "back": "Retour au paiement"
+    },
+    "confirmation": {
+      "doneTitle": "Merci pour votre commande.",
+      "doneText": "Paiement reçu. Votre commande est confirmée.",
+      "codText": "Commande enregistrée. Vous réglerez à la livraison.",
+      "transferText": "Commande enregistrée. Effectuez le virement en indiquant la référence ci-dessous ; les coordonnées bancaires vous sont communiquées par l’entreprise.",
+      "transferRef": "Référence à indiquer dans le virement",
+      "failTitle": "Le paiement n’a pas abouti.",
+      "failText": "Votre commande n’est pas validée et aucun paiement n’a été enregistré. Votre panier est conservé.",
+      "retry": "Réessayer le paiement",
+      "other": "Choisir un autre mode de paiement",
+      "toCart": "Revenir au panier",
+      "order": "Commande {ref}",
+      "status": "Statut",
+      "statuses": {
+        "paid": "Payée",
+        "pending": "En attente de paiement"
+      },
+      "next": "Et maintenant ?",
+      "nextText": "Vous recevez un e-mail de confirmation, puis nous organisons la livraison.",
+      "orders": "Suivre mes commandes",
+      "home": "Retour à l’accueil",
+      "none": "Aucune commande en cours.",
+      "noneLead": "Ajoutez des produits à votre panier pour passer commande.",
+      "date": "Date",
+      "method": "Paiement",
+      "delivery": "Livraison"
+    },
+    "account": {
+      "loginTitle": "Connexion",
+      "loginLead": "Accédez à vos commandes et à vos informations.",
+      "signupTitle": "Créer un compte",
+      "signupLead": "Un compte permet de suivre vos commandes et d’aller plus vite à la prochaine.",
+      "demoNote": "Démonstration : toute adresse e-mail et un mot de passe de 6 caractères minimum suffisent.",
+      "fields": {
+        "name": "Nom et prénom",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "company": "Société",
+        "ice": "ICE"
+      },
+      "passwordHint": "6 caractères minimum.",
+      "invalidPassword": "Le mot de passe doit comporter au moins 6 caractères.",
+      "login": "Se connecter",
+      "signup": "Créer mon compte",
+      "noAccount": "Pas encore de compte ?",
+      "haveAccount": "Déjà un compte ?",
+      "pro": "Je commande pour un établissement (hôtel, restaurant, café, traiteur…)",
+      "proNote": "Les tarifs professionnels sont activés après validation de votre compte par Ice Please.",
+      "title": "Mon compte",
+      "hello": "Bonjour {name}",
+      "proBadge": "Compte professionnel : tarifs en cours de validation",
+      "orders": "Mes commandes",
+      "ordersEmpty": "Vous n’avez pas encore de commande.",
+      "ordersCta": "Voir la boutique",
+      "cols": {
+        "ref": "Commande",
+        "date": "Date",
+        "status": "Statut",
+        "total": "Total"
+      },
+      "details": "Détails",
+      "logout": "Se déconnecter",
+      "profile": "Mes informations"
+    },
+    "pointer": {
+      "title": "Commandez en ligne dans la boutique",
+      "lead": "Formats, quantités et prix sont indiqués dans la boutique.",
+      "button": "Aller à la boutique",
+      "product": "Voir ce produit dans la boutique",
+      "bar": "Boutique"
+    },
+    "productPage": {
+      "presentation": "En savoir plus sur ce produit",
+      "back": "Retour à la boutique",
+      "crumb": "Boutique"
+    },
+    "productTitle": "{name} : commander en ligne | Ice Please Maroc"
+  }
+}

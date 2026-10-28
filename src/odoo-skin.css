@@ -1,0 +1,143 @@
+/* ===========================================================================
+   Odoo skin: dresses Odoo's own pages (shop, cart, checkout, payment, confirmation, account, login) with the design.
+
+   Scope: everything starts with `.ip-odoo`, the class the layout patch (odoo-pack, "layout" entry) puts on #wrapwrap, and
+   only touches the content of Odoo's pages: `main > #wrap:not(.ip-own)`. The pages of the pack carry `.ip-own` and keep
+   their own markup. Nothing here applies to the static site, which has no `.ip-odoo`.
+
+   Class names are those of Odoo 19's website_sale, payment and portal templates, read on nadirtest (views website_sale.products,
+   .products_item, .product, .cart_lines, .checkout_layout, .payment, .confirmation, payment.form…). The rules were checked
+   against fixtures built from those templates and Odoo's real stylesheet (tools/qa/odoo-fixtures.mjs), not yet on live pages.
+   =========================================================================== */
+
+.ip-odoo { background: var(--ip-glacier); }
+/* our header and footer replace Odoo's own (the layout patch also adds d-none to them; this is the safety net) */
+.ip-odoo .ip-header ~ #top,
+.ip-odoo .ip-footer ~ #bottom { display: none !important; }
+.ip-odoo .ip-cartlist { display: contents; list-style: none; margin: 0; padding: 0; }
+.ip-odoo .ip-cartlist li { display: contents; }
+.ip-odoo .ip-badge.d-none { display: none !important; }
+
+/* the bar is fixed: Odoo's content starts below it */
+.ip-odoo > main > #wrap:not(.ip-own) { min-height: 62vh; padding: var(--ip-header-space) 0 clamp(48px, 7vw, 96px); }
+.ip-odoo > main > #wrap:not(.ip-own) :is(.container, .container-lg, .container-fluid) { max-width: calc(var(--ip-wrap) + 2 * var(--ip-gutter)); padding-inline: var(--ip-gutter); }
+
+/* ---- type, links, colours ---------------------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) { font-size: 1.0625rem; line-height: 1.6; color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) { font-family: inherit; font-weight: 540; letter-spacing: -0.02em; color: var(--ip-ink); text-wrap: balance; }
+.ip-odoo #wrap:not(.ip-own) :is(h1, .h1) { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ip-odoo #wrap:not(.ip-own) :is(h2, .h2) { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); line-height: 1.1; }
+.ip-odoo #wrap:not(.ip-own) :is(h3, h4, .h3, .h4) { font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem); line-height: 1.2; }
+.ip-odoo #wrap:not(.ip-own) a:not(.btn):not(.dropdown-item):not(.nav-link):not(.list-group-item):not(.page-link):not(.o_wsale_products_item_title a) { color: var(--ip-fjord); text-underline-offset: 0.3em; }
+.ip-odoo #wrap:not(.ip-own) :is(.text-muted, .text-600, .opacity-75) { color: var(--ip-slate) !important; opacity: 1 !important; }
+.ip-odoo #wrap:not(.ip-own) hr { border-color: var(--ip-line); opacity: 1; }
+.ip-odoo #wrap:not(.ip-own) .breadcrumb { --bs-breadcrumb-divider-color: var(--ip-slate); font-size: 0.92rem; }
+.ip-odoo #wrap:not(.ip-own) .breadcrumb a { color: var(--ip-slate); text-decoration: none; }
+
+/* ---- buttons ------------------------------------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; min-height: 48px; padding: 0.5em 1.4em;
+  border: 0; border-radius: 999px; font-size: 1rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em;
+  transition: transform 0.35s var(--ip-spring), background-color 0.25s, box-shadow 0.25s;
+}
+.ip-odoo #wrap:not(.ip-own) .btn:active { transform: scale(0.97); transition-duration: 0.08s; }
+.ip-odoo #wrap:not(.ip-own) .btn-primary { background: var(--ip-frost); color: var(--ip-ink); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.55), 0 0 0 1px rgb(11 22 35 / 0.06); }
+.ip-odoo #wrap:not(.ip-own) .btn-primary:is(:hover, :focus-visible, :active) { background: #b9d2ee; color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) :is(.btn-secondary, .btn-light, .btn-outline-primary, .btn-outline-secondary) { background: transparent; color: var(--ip-ink); box-shadow: inset 0 0 0 1.5px rgb(11 22 35 / 0.22); }
+.ip-odoo #wrap:not(.ip-own) :is(.btn-secondary, .btn-light, .btn-outline-primary, .btn-outline-secondary):is(:hover, :active) { background: rgb(11 22 35 / 0.05); color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) .btn-link { min-height: 44px; padding-inline: 0.4em; background: none; color: var(--ip-fjord); box-shadow: none; text-decoration: underline; text-underline-offset: 0.3em; }
+.ip-odoo #wrap:not(.ip-own) .btn-sm { min-height: 44px; padding-inline: 1.1em; font-size: 0.95rem; }
+.ip-odoo #wrap:not(.ip-own) .btn.disabled, .ip-odoo #wrap:not(.ip-own) .btn:disabled { opacity: 0.5; }
+.ip-odoo #wrap:not(.ip-own) :focus-visible { outline: 3px solid var(--ip-fjord); outline-offset: 3px; }
+
+/* ---- forms --------------------------------------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) :is(.form-control, .form-select) {
+  min-height: 54px; padding: 14px 16px; border: 0; border-radius: 14px; background-color: #fff; color: var(--ip-ink);
+  font-size: 1rem; line-height: 1.4; box-shadow: inset 0 0 0 1.5px rgb(11 22 35 / 0.18);
+}
+.ip-odoo #wrap:not(.ip-own) textarea.form-control { min-height: 132px; }
+.ip-odoo #wrap:not(.ip-own) :is(.form-control, .form-select):focus { outline: 3px solid rgb(166 197 232 / 0.85); outline-offset: 2px; box-shadow: inset 0 0 0 1.5px var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) :is(.form-control, .form-select).is-invalid { box-shadow: inset 0 0 0 1.5px var(--ip-danger); background-image: none; }
+.ip-odoo #wrap:not(.ip-own) :is(.form-label, label) { margin-bottom: 7px; font-size: 0.92rem; font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) .form-check-input { width: 1.4em; height: 1.4em; border-color: rgb(11 22 35 / 0.5); }
+.ip-odoo #wrap:not(.ip-own) .form-check-input:checked { background-color: var(--ip-fjord); border-color: var(--ip-fjord); }
+.ip-odoo #wrap:not(.ip-own) .invalid-feedback, .ip-odoo #wrap:not(.ip-own) .text-danger { color: var(--ip-danger) !important; }
+
+/* ---- cards, lists, alerts, badges, tables ---------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) .card { border: 0; border-radius: var(--ip-radius-l); background: #fff; box-shadow: 0 30px 60px -44px rgb(22 48 77 / 0.55), inset 0 0 0 1px var(--ip-line); }
+.ip-odoo #wrap:not(.ip-own) .list-group { display: grid; gap: 10px; border-radius: 0; }
+.ip-odoo #wrap:not(.ip-own) .list-group-item { border: 0; border-radius: 18px !important; background: #fff; color: var(--ip-ink); box-shadow: inset 0 0 0 1.5px rgb(11 22 35 / 0.16); }
+.ip-odoo #wrap:not(.ip-own) .list-group-item:has(input:checked) { background: #f1f7fd; box-shadow: inset 0 0 0 2px var(--ip-fjord); }
+.ip-odoo #wrap:not(.ip-own) .alert { border: 0; border-radius: 18px; padding: 16px 20px; }
+.ip-odoo #wrap:not(.ip-own) .alert-success { background: #e5f1ec; color: #0d3b2b; }
+.ip-odoo #wrap:not(.ip-own) :is(.alert-info, .alert-warning) { background: var(--ip-frost-soft); color: var(--ip-fjord); }
+.ip-odoo #wrap:not(.ip-own) .alert-danger { background: #fbeceb; color: #6e1410; }
+.ip-odoo #wrap:not(.ip-own) .badge { border-radius: 999px; font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) :is(.badge.bg-primary, .badge.text-bg-primary) { background: var(--ip-fjord) !important; color: #fff !important; }
+.ip-odoo #wrap:not(.ip-own) .badge.bg-light { background: var(--ip-mist) !important; color: var(--ip-ink) !important; }
+.ip-odoo #wrap:not(.ip-own) .table { --bs-table-bg: transparent; --bs-table-border-color: var(--ip-line); color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) .page-link { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; margin-inline: 3px; border: 0; border-radius: 999px; background: #fff; color: var(--ip-ink); box-shadow: inset 0 0 0 1.5px rgb(11 22 35 / 0.16); }
+.ip-odoo #wrap:not(.ip-own) .page-item.active .page-link { background: var(--ip-fjord); color: #fff; box-shadow: none; }
+
+/* ---- shop: listing --------------------------------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) #o_wsale_products_header { padding-block: 8px 20px; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_products_grid_table { gap: clamp(14px, 2vw, 24px) !important; }
+.ip-odoo #wrap:not(.ip-own) .oe_product_cart { border: 0; border-radius: 24px; overflow: hidden; background: #fff; box-shadow: inset 0 0 0 1px var(--ip-line); }
+.ip-odoo #wrap:not(.ip-own) .oe_product_image { border-radius: 0; background: var(--ip-mist); aspect-ratio: 4 / 5; }
+.ip-odoo #wrap:not(.ip-own) .oe_product_image_img_wrapper img { width: 100%; height: 100%; object-fit: cover !important; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_product_information { padding: 16px 18px 18px; }
+.ip-odoo #wrap:not(.ip-own) h2.o_wsale_products_item_title { margin: 0 0 4px; font-size: 1.15rem; line-height: 1.2; font-weight: 600; letter-spacing: -0.02em; }
+.ip-odoo #wrap:not(.ip-own) h2.o_wsale_products_item_title a { color: var(--ip-ink); text-decoration: none; }
+.ip-odoo #wrap:not(.ip-own) .oe_subdescription { font-size: 0.93rem; line-height: 1.45; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_product_sub .product_price { font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_product_btn .btn { min-height: 44px; }
+.ip-odoo #wrap:not(.ip-own) #products_grid_before .nav-link, .ip-odoo #wrap:not(.ip-own) #products_grid_before a { color: var(--ip-ink); text-decoration: none; }
+.ip-odoo #wrap:not(.ip-own) #products_grid_before .active, .ip-odoo #wrap:not(.ip-own) #products_grid_before a.text-decoration-underline { font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_products_searchbar_form .form-control, .ip-odoo #wrap:not(.ip-own) .o_wsale_products_header_search_form_container .form-control { border-radius: 999px 0 0 999px; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_products_searchbar_form .btn, .ip-odoo #wrap:not(.ip-own) .o_wsale_products_header_search_form_container .btn { border-radius: 0 999px 999px 0; }
+.ip-odoo #wrap:not(.ip-own) .o_ribbons { border-radius: 999px; padding: 4px 12px; }
+
+/* ---- shop: product page ---------------------------------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) #product_detail_main { align-items: start; row-gap: 24px; }
+/* the design's layout whatever the image options chosen in Odoo: picture left, details right, from the large breakpoint */
+@media (min-width: 992px) {
+  .ip-odoo #wrap:not(.ip-own) #product_detail_main { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 5vw, 80px); }
+  .ip-odoo #wrap:not(.ip-own) #product_detail_main > .o_wsale_product_images, .ip-odoo #wrap:not(.ip-own) #product_detail_main > #product_details { width: auto; max-width: none; flex: none; padding-inline: 0; }
+}
+.ip-odoo #wrap:not(.ip-own) .o_wsale_product_images img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.ip-odoo #wrap:not(.ip-own) .o_wsale_product_images img, .ip-odoo #wrap:not(.ip-own) .o_wsale_product_images .carousel-inner { border-radius: var(--ip-radius-l); }
+.ip-odoo #wrap:not(.ip-own) #product_detail h1 { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem); line-height: 1; letter-spacing: -0.034em; }
+.ip-odoo #wrap:not(.ip-own) #product_details .o_wsale_product_details_content_section { margin-bottom: 1.25rem; }
+.ip-odoo #wrap:not(.ip-own) #product_details .oe_price, .ip-odoo #wrap:not(.ip-own) #product_details .oe_price .oe_currency_value { font-size: 2rem; font-weight: 600; letter-spacing: -0.03em; }
+.ip-odoo #wrap:not(.ip-own) #product_details .js_product > form, .ip-odoo #wrap:not(.ip-own) #o_wsale_product_details_content { max-width: 36rem; }
+.ip-odoo #wrap:not(.ip-own) #add_to_cart, .ip-odoo #wrap:not(.ip-own) #buy_now { min-height: 58px; font-size: 1.0625rem; }
+.ip-odoo #wrap:not(.ip-own) .css_quantity { display: inline-flex; align-items: center; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1.5px rgb(11 22 35 / 0.2); }
+.ip-odoo #wrap:not(.ip-own) .css_quantity .btn { min-height: 44px; min-width: 44px; padding: 0; border-radius: 50%; background: transparent; box-shadow: none; text-decoration: none; color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) .css_quantity input.quantity { width: 52px; border: 0; background: transparent; text-align: center; font-weight: 600; box-shadow: none; }
+.ip-odoo #wrap:not(.ip-own) .css_attribute_color { border-radius: 50%; }
+.ip-odoo #wrap:not(.ip-own) #product_full_description { padding-top: 1rem; }
+
+/* ---- shop: cart, delivery, payment, confirmation ----------------------------------------------------------- */
+.ip-odoo #wrap:not(.ip-own) .o_wizard { margin-block: 0.5rem 1.5rem !important; }
+.ip-odoo #wrap:not(.ip-own) .o_wizard .fw-bold { color: var(--ip-ink); }
+.ip-odoo #wrap:not(.ip-own) .o_cart_product { border-bottom: 1px solid var(--ip-line); }
+.ip-odoo #wrap:not(.ip-own) .o_cart_product_image img { border: 0 !important; border-radius: 16px; background: var(--ip-mist); }
+.ip-odoo #wrap:not(.ip-own) .js_delete_product { color: var(--ip-slate); }
+.ip-odoo #wrap:not(.ip-own) .o_total_card { border-radius: var(--ip-radius-l); }
+.ip-odoo #wrap:not(.ip-own) .o_total_card .btn-primary, .ip-odoo #wrap:not(.ip-own) .o_cta_navigation_container .btn-primary, .ip-odoo #wrap:not(.ip-own) [name=o_payment_submit_button] { width: 100%; min-height: 58px; font-size: 1.0625rem; }
+.ip-odoo #wrap:not(.ip-own) .o_cart_total table td { background: transparent; }
+.ip-odoo #wrap:not(.ip-own) [name=o_order_total] td { font-size: 1.2rem; }
+.ip-odoo #wrap:not(.ip-own) #o_delivery_methods .list-group-item, .ip-odoo #wrap:not(.ip-own) #o_payment_methods .list-group-item { padding: 16px 18px; }
+.ip-odoo #wrap:not(.ip-own) .o_payment_option_label { font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) #o_payment_form .btn-link { color: var(--ip-fjord); }
+.ip-odoo #wrap:not(.ip-own) #order_name h5 { font-size: 1.1rem; font-weight: 600; }
+.ip-odoo #wrap:not(.ip-own) .o_cart_summary .o_cart_product_image img, .ip-odoo #wrap:not(.ip-own) .o_cart_products_table img { border-radius: 12px; }
+
+/* ---- account and sign in --------------------------------------------------------------------------------- */
+.ip-odoo #wrap.o_portal_wrap .o_portal_navbar { border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--ip-line); }
+.ip-odoo #wrap:not(.ip-own) .o_portal_index_card a, .ip-odoo #wrap:not(.ip-own) .o_portal_docs .list-group-item { text-decoration: none; }
+.ip-odoo #wrap:not(.ip-own) .o_portal_my_home .o_portal_index_card { border-radius: 22px; }
+.ip-odoo .oe_login_form, .ip-odoo .oe_website_login_container { max-width: 480px; margin-inline: auto; padding: clamp(20px, 3.2vw, 40px); border-radius: var(--ip-radius-l); background: #fff; box-shadow: 0 30px 60px -36px rgb(22 48 77 / 0.5), inset 0 0 0 1px rgb(255 255 255 / 0.9); }
+.ip-odoo #wrap .oe_login_form .btn-primary { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) { .ip-odoo #wrap .btn { transition-duration: 0.01ms; } }

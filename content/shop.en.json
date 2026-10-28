@@ -1,0 +1,303 @@
+{
+  "nav": {
+    "shop": "Shop"
+  },
+  "ui": {
+    "cart": "Cart",
+    "cartAria": "Cart ({n})",
+    "shopOrder": "Order online",
+    "account": "My account",
+    "footerAccount": "My account",
+    "mailto": "Write",
+    "waHelp": "Need help? Write to us on WhatsApp"
+  },
+  "footer": {
+    "cgv": "General terms of sale"
+  },
+  "meta": {
+    "shop": {
+      "title": "Online shop: clear ice, crushed ice, dry ice | Ice Please Morocco",
+      "description": "Order your Ice Please crystal-clear ice online: Cube XL, Ice Stick, Moon Ball, gourmet ice, crushed ice, dry ice and accessories. Professional delivery 7 days a week across Morocco."
+    },
+    "cart": {
+      "title": "Cart | Ice Please Morocco",
+      "description": ""
+    },
+    "checkout": {
+      "title": "Order: delivery | Ice Please Morocco",
+      "description": ""
+    },
+    "payment": {
+      "title": "Payment | Ice Please Morocco",
+      "description": ""
+    },
+    "simulate": {
+      "title": "Payment simulation | Ice Please Morocco",
+      "description": ""
+    },
+    "confirmation": {
+      "title": "Order confirmation | Ice Please Morocco",
+      "description": ""
+    },
+    "login": {
+      "title": "Sign in | Ice Please Morocco",
+      "description": ""
+    },
+    "signup": {
+      "title": "Create an account | Ice Please Morocco",
+      "description": ""
+    },
+    "account": {
+      "title": "My account | Ice Please Morocco",
+      "description": ""
+    },
+    "cgv": {
+      "title": "General terms of sale | Ice Please",
+      "description": ""
+    }
+  },
+  "shop": {
+    "demo": "Demonstration mock-up: no real order is placed, no payment is made and no data is sent.",
+    "priceHint": "Price to be confirmed",
+    "list": {
+      "title": "Shop",
+      "lead": "Order your crystal-clear ice online. Professional delivery 7 days a week across Morocco.",
+      "filters": "Categories",
+      "all": "All",
+      "categories": {
+        "clear": "Clear ice",
+        "service": "For service",
+        "extras": "Effects and accessories"
+      },
+      "search": "Search for a product",
+      "searchPlaceholder": "Search",
+      "shown": "Products shown: {n}",
+      "empty": "No product matches your search.",
+      "reset": "Show everything",
+      "quoteTitle": "A large volume, an event, made-to-measure ice?"
+    },
+    "unit": {
+      "pack20": "pack of 20",
+      "bag": "bag",
+      "pack12_5": "12.5 kg pack",
+      "kg": "kg",
+      "piece": "piece"
+    },
+    "option": {
+      "size": "Size",
+      "bag": "Bag",
+      "format": "Format"
+    },
+    "bagLabel": "{n} kg bag",
+    "formats": {
+      "stamp": "Individual stamp",
+      "tray": "Imprint tray"
+    },
+    "buy": {
+      "add": "Add to cart",
+      "chooseOptions": "Choose options",
+      "requestQuote": "Request a quote",
+      "quoteOnly": "On quote",
+      "quoteNote": "This ice is made to measure: describe what you need and we will reply with a quote.",
+      "qty": "Quantity",
+      "qtyMinus": "Decrease quantity",
+      "qtyPlus": "Increase quantity",
+      "minNote": "Minimum order: {n} {unit}.",
+      "minError": "The minimum quantity is {n} {unit}.",
+      "qtyError": "Enter a whole quantity of at least 1.",
+      "optionError": "Choose an option before adding to the cart.",
+      "choose": "Choose…",
+      "added": "{name} was added to your cart.",
+      "viewCart": "View cart",
+      "orderWa": "Order on WhatsApp",
+      "alt": "Other ways to order",
+      "bar": "Add"
+    },
+    "cart": {
+      "title": "Cart",
+      "lead": "Check your products before placing the order.",
+      "steps": "Order steps",
+      "stepNames": [
+        "Cart",
+        "Delivery",
+        "Payment",
+        "Confirmation"
+      ],
+      "stepOf": "Step {n} of {total}",
+      "summary": "Summary",
+      "empty": "Your cart is empty.",
+      "emptyLead": "Browse the shop to add ice to your order.",
+      "continue": "Continue shopping",
+      "checkout": "Place the order",
+      "remove": "Remove",
+      "removeAria": "Remove {name} from the cart",
+      "removed": "{name} was removed from your cart.",
+      "undo": "Undo",
+      "unitPrice": "Unit price",
+      "lineTotal": "Total",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "deliveryLater": "Calculated at the next step",
+      "total": "Total",
+      "items": "Items: {n}",
+      "quote": "Request a quote for this cart",
+      "quoteIntro": "Hello Ice Please, I would like to receive a quote for:",
+      "tax": "Taxes and delivery fees are shown at the next step.",
+      "updated": "Cart updated."
+    },
+    "checkout": {
+      "title": "Delivery",
+      "lead": "Tell us who receives the order and where to deliver it.",
+      "contact": "Your details",
+      "address": "Delivery address",
+      "method": "Delivery method",
+      "accountHint": "Already have an account?",
+      "signIn": "Sign in",
+      "fields": {
+        "name": "Full name",
+        "phone": "Phone",
+        "email": "Email",
+        "company": "Company (optional)",
+        "ice": "ICE number (optional, for the invoice)",
+        "street": "Address",
+        "city": "City",
+        "zip": "Postal code (optional)",
+        "date": "Preferred delivery date (optional)",
+        "note": "Information for the driver (optional)"
+      },
+      "methods": {
+        "pro": {
+          "name": "Professional delivery",
+          "desc": "Delivery 7 days a week across Morocco."
+        },
+        "pickup": {
+          "name": "Pick-up",
+          "desc": "Pick-up details are sent to you after the order."
+        }
+      },
+      "fee": "Fee: {price}",
+      "continue": "Continue to payment",
+      "back": "Back to the cart",
+      "errors": "Fix the highlighted fields to continue."
+    },
+    "payment": {
+      "title": "Payment",
+      "lead": "Check your order, then choose how to pay for it.",
+      "review": "Your order",
+      "edit": "Edit",
+      "contact": "Details",
+      "address": "Delivery",
+      "method": "Payment method",
+      "methods": {
+        "card": {
+          "name": "Bank card",
+          "desc": "You are redirected to our provider’s secure payment page."
+        },
+        "cod": {
+          "name": "Cash on delivery",
+          "desc": "You pay when you receive your order."
+        },
+        "transfer": {
+          "name": "Bank transfer",
+          "desc": "The bank details are sent to you after the order."
+        }
+      },
+      "terms": "I accept the {link}.",
+      "termsLink": "general terms of sale",
+      "termsError": "You must accept the general terms of sale.",
+      "methodError": "Choose a payment method.",
+      "pay": "Pay for my order",
+      "confirm": "Confirm the order",
+      "back": "Back to delivery"
+    },
+    "simulate": {
+      "badge": "Simulation",
+      "title": "Payment provider page",
+      "lead": "This page stands in for the Stripe page, or the chosen provider’s, which will be connected later. Choose the result to simulate.",
+      "order": "Order {ref}",
+      "amount": "Amount: {amount}",
+      "question": "Should the payment go through?",
+      "yes": "Yes, payment accepted",
+      "no": "No, payment declined",
+      "processing": "Checking the payment…",
+      "back": "Back to payment"
+    },
+    "confirmation": {
+      "doneTitle": "Thank you for your order.",
+      "doneText": "Payment received. Your order is confirmed.",
+      "codText": "Order recorded. You will pay on delivery.",
+      "transferText": "Order recorded. Make the transfer quoting the reference below; the company will send you the bank details.",
+      "transferRef": "Reference to quote in the transfer",
+      "failTitle": "The payment did not go through.",
+      "failText": "Your order is not confirmed and no payment was recorded. Your cart is kept.",
+      "retry": "Try the payment again",
+      "other": "Choose another payment method",
+      "toCart": "Back to the cart",
+      "order": "Order {ref}",
+      "status": "Status",
+      "statuses": {
+        "paid": "Paid",
+        "pending": "Awaiting payment"
+      },
+      "next": "What happens next?",
+      "nextText": "You receive a confirmation email, then we arrange the delivery.",
+      "orders": "Follow my orders",
+      "home": "Back to home",
+      "none": "No order in progress.",
+      "noneLead": "Add products to your cart to place an order.",
+      "date": "Date",
+      "method": "Payment",
+      "delivery": "Delivery"
+    },
+    "account": {
+      "loginTitle": "Sign in",
+      "loginLead": "Access your orders and your details.",
+      "signupTitle": "Create an account",
+      "signupLead": "An account lets you follow your orders and order faster next time.",
+      "demoNote": "Demonstration: any email address and a password of at least 6 characters will do.",
+      "fields": {
+        "name": "Full name",
+        "email": "Email",
+        "password": "Password",
+        "company": "Company",
+        "ice": "ICE number"
+      },
+      "passwordHint": "At least 6 characters.",
+      "invalidPassword": "The password must be at least 6 characters long.",
+      "login": "Sign in",
+      "signup": "Create my account",
+      "noAccount": "No account yet?",
+      "haveAccount": "Already have an account?",
+      "pro": "I order for a business (hotel, restaurant, café, caterer…)",
+      "proNote": "Professional prices are activated once Ice Please has validated your account.",
+      "title": "My account",
+      "hello": "Hello {name}",
+      "proBadge": "Professional account: prices being validated",
+      "orders": "My orders",
+      "ordersEmpty": "You have no orders yet.",
+      "ordersCta": "Go to the shop",
+      "cols": {
+        "ref": "Order",
+        "date": "Date",
+        "status": "Status",
+        "total": "Total"
+      },
+      "details": "Details",
+      "logout": "Sign out",
+      "profile": "My details"
+    },
+    "pointer": {
+      "title": "Order online in the shop",
+      "lead": "Sizes, quantities and prices are shown in the shop.",
+      "button": "Go to the shop",
+      "product": "See this product in the shop",
+      "bar": "Shop"
+    },
+    "productPage": {
+      "presentation": "Learn more about this product",
+      "back": "Back to the shop",
+      "crumb": "Shop"
+    },
+    "productTitle": "{name}: order online | Ice Please Morocco"
+  }
+}

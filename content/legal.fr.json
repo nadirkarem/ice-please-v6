@@ -30,5 +30,29 @@
       ["h3", "Modifications des conditions"],
       ["p", "FAAB and CO se réserve le droit de modifier à tout moment les présentes conditions de service pour s’adapter à l’évolution des lois ou de nos services. Vous serez informé de toute modification importante via l’application ou par email. L’utilisation continue de l’application après modification vaut acceptation des nouvelles conditions."]
     ]
+  },
+  "cgv": {
+    "title": "Conditions générales de vente",
+    "blocks": [
+      ["p", "Cette page est un squelette : seules les phrases déjà publiées par l’entreprise y figurent. Chaque rubrique marquée « À compléter » attend le texte validé par l’entreprise (et, si elle le souhaite, par son conseil juridique)."],
+      ["h2", "Vendeur"],
+      ["p", "FAAB & CO, qui exploite la marque Ice Please. À compléter avec l’entreprise avant publication. (forme juridique, siège, identifiants légaux, contact)."],
+      ["h2", "Produits et prix"],
+      ["p", "Les prix sont indiqués en dirhams marocains (MAD). À compléter avec l’entreprise avant publication. (prix hors taxes ou toutes taxes comprises, taxe applicable, validité des prix)."],
+      ["h2", "Commande"],
+      ["p", "À compléter avec l’entreprise avant publication. (étapes de la commande, confirmation, quantités minimales, commandes sur devis)."],
+      ["h2", "Paiement"],
+      ["p", "À compléter avec l’entreprise avant publication. (modes de paiement acceptés, paiement à la livraison, virement, sécurité du paiement par carte)."],
+      ["h2", "Livraison"],
+      ["p", "Livraison professionnelle 7j/7 au Maroc. À compléter avec l’entreprise avant publication. (zones et villes desservies, délais, créneaux, frais, retrait sur place)."],
+      ["h2", "Conservation de la glace et réception"],
+      ["p", "À compléter avec l’entreprise avant publication. (conditions de réception, conservation, responsabilité après la livraison)."],
+      ["h2", "Annulation, retours et réclamations"],
+      ["p", "À compléter avec l’entreprise avant publication. (délais d’annulation, droit de rétractation applicable à un produit périssable, procédure de réclamation)."],
+      ["h2", "Données personnelles"],
+      ["p", "Les informations saisies lors d’une commande servent à traiter celle-ci. Le détail figure dans la politique de confidentialité. À compléter avec l’entreprise avant publication."],
+      ["h2", "Droit applicable et litiges"],
+      ["p", "À compléter avec l’entreprise avant publication."]
+    ]
   }
 }
