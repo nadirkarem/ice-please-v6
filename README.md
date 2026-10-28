@@ -1,6 +1,6 @@
 # Ice Please, maquette du site (FR / EN / AR)
 
-Version 6 : V5 + la boutique en ligne (brouillon). Pas encore publiée.
+Aperçu en ligne : **https://nadirkarem.github.io/ice-please-v6/** (version 6 : V5 + la boutique en ligne, brouillon non indexé).
 
 Maquette de refonte du site d'Ice Please Morocco (FAAB & CO), glaçons premium et clear ice pour les professionnels de la boisson. Ce n'est pas le site officiel : les textes reprennent le site actuel, les visuels de synthèse (vidéo, sphère dans un verre de whisky) sont des illustrations, et la page est en `noindex`.
 
@@ -38,4 +38,4 @@ BASE_PATH=/ice-please-v6 npx vite preview
 
 ## Mise en ligne
 
-Chaque envoi sur la branche `main` reconstruit le site et le publie sur GitHub Pages (`.github/workflows/pages.yml`).
+Chaque envoi sur la branche `main` reconstruit le site et le publie sur GitHub Pages (`.github/workflows/pages.yml`). Le même envoi publie aussi le paquet pour Odoo (pages, catalogue de la boutique, feuille de style et script) sous `/odoo-pack/`, `/ip.css` et `/ip.js` : une page HTTPS comme celle d'Odoo ne peut pas lire un serveur local, elle peut lire celui-ci.
